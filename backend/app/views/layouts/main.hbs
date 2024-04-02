@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Food Plan</title>
+
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <nav class="header navbar navbar-expand-lg navbar-dark py-4" style="background-color: #493150;">
+            <div class="container">
+                <a class="navbar-brand" href="/" style="font-size: 22px; font-weight: bold">My Fitness Gal</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ml-auto">
+                        <a class="nav-link {{#if (eq active 'home')}}active{{/if}}" href="/" id="homeLink">Home</a>
+                        <a class="nav-link {{#if (eq active 'food')}}active{{/if}}" href="/meal/add"
+                            id="foodLink">Food</a>
+                        <a class="nav-link {{#if (eq active 'plans')}}active{{/if}}" href="/meal/meal-plan"
+                            id="plansLink">Plans</a>
+                        <a class="nav-link {{#if (eq active 'meals')}}active{{/if}}" href="/meal/all-meals"
+                            id="plansLink">Meals</a>
+                        <a class="nav-link {{#if (eq active 'goals')}}active{{/if}}" href="/Plans"
+                            id="plansLink">Goals</a>
+                        <a class="nav-link {{#if (eq active 'about')}}active{{/if}}" href="/about"
+                            id="aboutLink">About</a>
+                        <div class="vr bg-white mx-2 d-none d-lg-block"></div>
+                        {{#if session.user}}
+                        <a class="nav-link" href="/auth/logout" id="logoutLink">Logout ({{session.user.name}})</a>
+                        {{else}}
+                        <a class="nav-link {{#if (eq active 'login')}}active{{/if}}" href="/auth/login">Login</a>
+                        <a class="nav-link {{#if (eq active 'signup')}}active{{/if}}" href="/auth/signup">Register</a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    <div class="container my-4">
+        {{>content}}
+    </div>
+    <script>
+        // JavaScript to add 'active' class to the clicked link
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', function () {
+                    links.forEach(lnk => lnk.classList.remove('active')); // Remove 'active' class from all links
+                    this.classList.add('active'); // Add 'active' class to the clicked link
+                });
+            });
+        });
+        // Flash messages for 5 seconds to display
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle flush errors
+            var flashErrors = document.getElementById('flashErrors');
+            if (flashErrors) {
+                setTimeout(function () {
+                    flashErrors.style.display = 'none';
+                }, 5000);
+            }
+
+            // Handle flash success messages
+            var flashSuccess = document.getElementById('flashSuccess');
+            if (flashSuccess) {
+                setTimeout(function () {
+                    flashSuccess.style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var fullName = '{{session.user.name}}';
+            var firstName = fullName.split(' ')[0]; // Split the name by space and take the first part
+            document.getElementById('logoutLink').innerHTML = 'Logout (' + firstName + ')';
+        });
+    </script>
+</body>
+
+</html>

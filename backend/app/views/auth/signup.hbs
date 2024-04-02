@@ -1,0 +1,63 @@
+{{#>main}}
+{{#*inline "content"}}
+<div class="header">
+    <div class="col-lg-1 col-sm-2 col-2 float-left">
+        <a href="">
+            <div class="hdr-left-icon"><img src="/imgs/top-user.png"></div>
+        </a>
+    </div>
+    <div class="col-lg-10 col-sm-8 col-8 float-left">
+        <h2>Register</h2>
+    </div>
+    <div class="col-lg-1 col-sm-2 col-2 float-right">
+        <div class="hdr-right-icon"><a href=""><img src="/imgs/message.png"></a></div>
+    </div>
+</div>
+<div class="content">
+    <div class="card-body">
+        {{#if flashSuccess}}
+        <div id="flashSuccess">
+            {{#each flashSuccess}}
+            <p class="alert alert-success">{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="card-body">
+        {{#if flashErrors}}
+        <div id="flashErrors">
+            {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="content-sbhdng">Create an Account</div>
+    <form id="signupForm" method="POST" action="/auth/register">
+        <div class="content-form-box">
+            <div class="form-name">Full Name</div>
+            <input type="text" class="form-input" placeholder="Enter Name" name="name">
+            <div class="form-img"><img src="/imgs/user-icon.jpg"></div>
+        </div>
+        <div class="content-form-box">
+            <div class="form-name">Email</div>
+            <input type="email" class="form-input" placeholder="Enter Email" name="email">
+            <div class="form-img"><img src="/imgs/email-icon.jpg"></div>
+        </div>
+        <div class="content-form-box">
+            <div class="form-name">Password</div>
+            <input type="password" class="form-input" placeholder="******" name="password">
+            <div class="form-img"><img src="/imgs/eye-icon.jpg"></div>
+        </div>
+        <div class="content-form-box">
+            <div class="form-name">Confirm Password</div>
+            <input type="password" class="form-input" placeholder="******" name="confirmPassword">
+            <div class="form-img"><img src="/imgs/eye-icon.jpg"></div>
+        </div>
+        <input type="submit" class="form-btn" value="Sign up" id="submitBtn">
+    </form>
+    {{!-- {{/with}} --}}
+</div>
+</div>
+{{/inline}}
+{{/main}}

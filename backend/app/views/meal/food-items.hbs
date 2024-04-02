@@ -1,0 +1,73 @@
+{{#>main}}
+{{#*inline "content"}}
+<div class="header">
+    <div class="col-lg-1 col-sm-2 col-2 float-left">
+    </div>
+    <div class="col-lg-10 col-sm-8 col-8 float-left">
+        <h2>Meals</h2>
+    </div>
+    <div class="col-lg-1 col-sm-2 col-2 float-right">
+    </div>
+</div>
+<div class="content">
+    <div class="card-body">
+        {{#if flashSuccess}}
+        <div id="flashSuccess">
+            {{#each flashSuccess}}
+            <p class="alert alert-success">{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="card-body">
+        {{#if flashErrors}}
+        <div id="flashErrors">
+            {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="content-sbhdng">Add Food</div>
+    <form method="post" action="/meal/addMeal">
+        <div class="content-select-box">
+            <label class="">
+                <select name="mealType" id="mealType" class="custom-select" style="font-weight: bold; width: auto;"
+                    required>
+                    <option value="">Select Type</option>
+                    <option value="brakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Snack</option>
+                </select>
+            </label>
+        </div>
+        <div class="content-form-box-2">
+            <div class="form-name">Name</div>
+            <input type="text" class="form-input" placeholder="Food Name" name="name">
+        </div>
+        <div class="content-form-box-2">
+            <div class="form-name">Calories</div>
+            <input type="datetime" class="form-input" name="calories" value="0">
+        </div>
+        <div class="content-form-box-2">
+            <div class="form-name">Protein</div>
+            <input type="text" class="form-input" placeholder="Enter Protein" name="protein" value="0">
+        </div>
+        <div class="content-form-box-2">
+            <div class="form-name">Carbs</div>
+            <input type="text" class="form-input" placeholder="Enter Carbs" name="carbs" value="0">
+        </div>
+        <div class="content-form-box-2">
+            <div class="form-name">Fat</div>
+            <input type="text" class="form-input" placeholder="Enter Fat" name="fat" value="0">
+        </div>
+        <div class="content-form-box-2">
+            <div class="form-name">Serving Size</div>
+            <input type="text" class="form-input" placeholder="Enter Serving size" name="servingSize" value="1">
+        </div>
+        <input type="submit" class="form-btn" value="Submit">
+    </form>
+</div>
+{{/inline}}
+{{/main}}

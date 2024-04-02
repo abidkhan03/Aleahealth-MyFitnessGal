@@ -1,0 +1,70 @@
+{{#> main}}
+{{#*inline "content"}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div class="container mt-4">
+    <h2>All Meals</h2>
+    <input type="text" id="mealSearch" placeholder="Search for meals..." class="form-control mb-3" value="{{search}}">
+    <table class="table table-bordered">
+        <thead style="background-color: #be22b1; color: white">
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Calories</th>
+                <th>Protein (g)</th>
+                <th>Carbs (g)</th>
+                <th>Fat (g)</th>
+                <th>Serving Size</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="mealTableBody">
+            {{#each meals}}
+            <tr>
+                <td>{{this.mealId}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.mealType}}</td>
+                <td>{{this.calories}}</td>
+                <td>{{this.protein}}</td>
+                <td>{{this.carbs}}</td>
+                <td>{{this.fat}}</td>
+                <td>{{this.servingSize}}</td>
+                <td>
+                    <a class="btn btn-primary" href="/meal/{{this.mealId}}">
+                        <i class="bi-pencil"></i>
+                    </a>
+                </td>
+                <td>
+                    <form action="/meal/delete/{{this.mealId}}" method="post">
+                        <button class="btn btn-danger">
+                            <i class="bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="7">No meals found</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#mealSearch").keyup(function () {
+            var search = $(this).val();
+            $.ajax({
+                url: "/meal/all-meals",
+                type: "GET",
+                data: { search: search },
+                success: function (data) {
+                    $("#mealTableBody").html($(data).find("#mealTableBody").html());
+                }
+            });
+        });
+    });
+</script>
+{{/inline}}
+{{/main}}

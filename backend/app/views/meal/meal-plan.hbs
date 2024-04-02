@@ -1,0 +1,50 @@
+{{#>main}}
+{{#*inline "content"}}
+<div class="header">
+    <div class="col-lg-1 col-sm-2 col-2 float-left">
+        <a href="/">
+            <div class="hdr-left-icon"><img src="/imgs/arrow.png"></div>
+        </a>
+    </div>
+    <div class="col-lg-10 col-sm-8 col-8 float-left">
+        <h2>Meal Plan</h2>
+    </div>
+</div>
+<div class="content">
+    <div class="card-body">
+        {{#if flashSuccess}}
+        <div id="flashSuccess">
+            {{#each flashSuccess}}
+            <p class="alert alert-success">{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="card-body">
+        {{#if flashErrors}}
+        <div id="flashErrors">
+            {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="content-sbhdng">Information Require</div>
+    <form method="post" action="/meal/create">
+        <div class="content-form-box">
+            <div class="form-name">Plan Name</div>
+            <input type="text" class="form-input" placeholder="Enter Name">
+        </div>
+        <div class="content-form-box">
+            <div class="form-name">Total Calories</div>
+            <input type="datetime" class="form-input" placeholder="Calories">
+        </div>
+        <div class="content-form-box-2">
+            <div class="form-name">Description</div>
+            <input type="text" class="form-input" placeholder="Discription">
+        </div>
+        <input type="submit" class="form-btn" value="Submit">
+    </form>
+</div>
+{{/inline}}
+{{/main}}

@@ -1,0 +1,60 @@
+{{#>main}}
+{{#*inline "content"}}
+<div class="header">
+    <div class="col-lg-1 col-sm-2 col-2 float-left">
+        <a href="">
+            <div class="hdr-left-icon"><img src="/imgs/top-user.png"></div>
+        </a>
+    </div>
+    <div class="col-lg-10 col-sm-8 col-8 float-left">
+        <h2>Login</h2>
+    </div>
+    <div class="col-lg-1 col-sm-2 col-2 float-right">
+        <div class="hdr-right-icon"><a href=""><img src="/imgs/message.png"></a></div>
+    </div>
+</div>
+<div class="container">
+    <div class="content">
+        {{#if flashSuccess}}
+        <div id="flashSuccess">
+            {{#each flashSuccess}}
+            <p class="alert alert-success">{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+
+        <div class="card-body">
+            {{#if flashErrors}}
+            <div id="flashErrors">
+                {{#each flashErrors}}
+                <p class="alert alert-danger">{{this}}</p>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+        <div class="content-sbhdng">Proceed with your</div>
+        <div class="content-hdng">Login</div>
+        <form method="post" action="/auth/connect">
+            <div class="content-form-box">
+                <div class="form-name">Email</div>
+                <input type="text" class="form-input" placeholder="Enter Email" name="email" required>
+                <div class="form-img"><img src="/imgs/user-icon.jpg"></div>
+            </div>
+            <div class="content-form-box">
+                <div class="form-name">Password</div>
+                <input type="password" class="form-input" placeholder="******" name="password" required>
+                <div class="form-img"><img src="/imgs/eye-icon.jpg"></div>
+            </div>
+            <input type="submit" class="form-btn" value="Login">
+            <div class="content-form-box">
+                <div class="form-name text-center"><a href="">Forgot Password?</a></div>
+            </div>
+        </form>
+        <div class="content-form-box">
+            <div class="form-name text-center">If you don’t have account <a href="/auth/signup"><strong>SIGN
+                        UP</strong></a></div>
+        </div>
+    </div>
+</div>
+{{/inline}}
+{{/main}}
